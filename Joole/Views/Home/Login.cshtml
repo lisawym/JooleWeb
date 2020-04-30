@@ -1,0 +1,118 @@
+﻿@model Joole.Data.tblUser
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Joole </title>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/JooleStyles/login.css")
+    @Styles.Render("~/Content/JooleStyles/home.css")
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="bar">
+            <button id="register"> Sign Up </button>
+        </div>
+
+        <div class="header">
+            <img id="logo" src="@Url.Content("~/Images/joolelogo.png")" />
+            <p>Building Product Selection Platform</p>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                <div class="login">
+
+                    @Html.TextBoxFor(u => u.UserName, new { @class = "loginbox", @id = "username", @placeholder = "Username or Email" })
+                    <br />
+                    @Html.TextBoxFor(u => u.UserPassword, new { @class = "loginbox", @id = "password", @placeholder = "Password" })
+                    <br />
+
+                    <input type="submit" id="loginbutton" value="Log In" />
+
+                </div>
+
+            }
+        </div>
+
+
+
+    </div>
+
+   
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h3> Register as User </h3>
+            <span class="close">&times;</span><hr />
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+            {
+                <div id="profileContainer">
+                    <label> Image Preview </label><br />
+                    <img id="profile" /><br />
+                    <label for="userImage">Your Profile Picture</label>
+                    <input type="file" id="userImage" name="userImage" accept="image/*" onchange="document.getElementById('profile').src = window.URL.createObjectURL(this.files[0])"><br />
+                </div>
+
+                <label class="registerLabel" for="userName"> UserName: </label>
+                @Html.TextBoxFor(x => x.UserName, new { @placeholder = "User Name", @autocomplete = "off" }) <br />
+                @Html.ValidationMessageFor(x => x.UserName)<br />
+
+                <label class="registerLabel" for="UserEmail"> Email Address: </label>
+                @Html.TextBoxFor(x => x.UserEmail, new { @placeholder = "Email ID", @autocomplete = "off" }) <br />
+                @Html.ValidationMessageFor(x => x.UserEmail)<br />
+
+                <label class="registerLabel" for="UserPassword"> Password: </label>
+                @Html.PasswordFor(x => x.UserPassword, new { @placeholder = "Password", @autocomplete = "off" }) <br />
+                @Html.ValidationMessageFor(x => x.UserPassword)<br />
+
+                <label class="registerLabel" for="UserConfirmPassword"> Confirm Password: </label>
+                @Html.PasswordFor(x => x.UserConfirmPassword, new { @placeholder = "Confirm Password", @autocomplete = "off" }) <br />
+                @Html.ValidationMessageFor(x => x.UserConfirmPassword)<br />
+
+
+
+                <hr />
+                <button class="btn btn-primary" id="registerSubmit" type="submit"> Sign Up </button>
+            }
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("registerModal");
+        var btn = document.getElementById("register");
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
