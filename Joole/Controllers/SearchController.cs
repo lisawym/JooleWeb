@@ -6,18 +6,27 @@ using System.Web.Mvc;
 using Joole.Data;
 using Joole.Service;
 
+
+
 namespace Joole.Controllers
 {
     public class SearchController : Controller
     {
         // GET: Search
+        [HttpGet]
         public ActionResult Search()
         {
 
             UserService serviceObj = new UserService();
-            IEnumerable<tblCategory> Categories= serviceObj.GetCategories();
-
+            
+            ViewBag.categories = serviceObj.GetCategories();
+           
             return View();
+        }
+
+        public ActionResult SubCategory(int c)
+        {
+            return View("Login");
         }
     }
 }
