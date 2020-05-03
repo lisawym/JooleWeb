@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Joole.Data;
 using Joole.Service;
+using Joole.Models;
 
 
 
@@ -27,6 +28,18 @@ namespace Joole.Controllers
         public ActionResult SubCategory(int c)
         {
             return View("Login");
+        }
+
+        public ActionResult Result()
+        {
+
+            UserService serviceObj = new UserService();
+            IEnumerable<tblProduct> p = serviceObj.GetProducts();
+            var productmodel = new ProductModel
+            {
+                products = p
+            };
+            return View(productmodel);
         }
     }
 }

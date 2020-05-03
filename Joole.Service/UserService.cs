@@ -52,6 +52,13 @@ namespace Joole.Service
             IEnumerable<tblSubCategory> subcategories = uow.GetSubCategoriesRepo.GetAll();
             return subcategories;
         }
+        public IEnumerable<tblProduct> GetProducts()
+        {
+
+            UnitOfWork uow = new UnitOfWork(new JooleDataContext());
+            IEnumerable<tblProduct> products = uow.GetProductsRepo.GetAll();
+            return products;
+        }
 
     }
 }

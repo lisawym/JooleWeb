@@ -134,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,30 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\joolelogo.png" />
+    <Content Include="ProductImages\1.png" />
+    <Content Include="ProductImages\10.png" />
+    <Content Include="ProductImages\11.png" />
+    <Content Include="ProductImages\12.png" />
+    <Content Include="ProductImages\13.png" />
+    <Content Include="ProductImages\14.png" />
+    <Content Include="ProductImages\15.png" />
+    <Content Include="ProductImages\16.png" />
+    <Content Include="ProductImages\17.png" />
+    <Content Include="ProductImages\18.png" />
+    <Content Include="ProductImages\19.png" />
+    <Content Include="ProductImages\2.png" />
+    <Content Include="ProductImages\20.png" />
+    <Content Include="ProductImages\21.png" />
+    <Content Include="ProductImages\22.png" />
+    <Content Include="ProductImages\23.png" />
+    <Content Include="ProductImages\24.png" />
+    <Content Include="ProductImages\3.png" />
+    <Content Include="ProductImages\4.png" />
+    <Content Include="ProductImages\5.png" />
+    <Content Include="ProductImages\6.png" />
+    <Content Include="ProductImages\7.png" />
+    <Content Include="ProductImages\8.png" />
+    <Content Include="ProductImages\9.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -175,10 +200,10 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Search\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
