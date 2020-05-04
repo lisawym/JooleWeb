@@ -37,9 +37,9 @@
 
                     @Html.TextBoxFor(u => u.UserName, new { @class = "loginbox", @id = "username", @placeholder = "Username or Email" })
                     <br />
-                    @Html.TextBoxFor(u => u.UserPassword, new { @class = "loginbox", @id = "password", @placeholder = "Password" })
+                    @Html.TextBoxFor(u => u.UserPassword, new { @class = "loginbox", @id = "password", @placeholder = "Password" , type = "password" })
                     <br />
-
+                    <p style="color:red">@ViewData["error"]</p>
                     <input type="submit" id="loginbutton" value="Log In" />
 
                 </div>
@@ -51,13 +51,13 @@
 
     </div>
 
-   
+
 
     <div id="registerModal" class="modal">
         <div class="modal-content">
             <h3> Register as User </h3>
             <span class="close">&times;</span><hr />
-            @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div id="profileContainer">
                     <label> Image Preview </label><br />

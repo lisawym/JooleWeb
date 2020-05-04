@@ -16,6 +16,20 @@ namespace Joole.Repo
             _jooleDataContext = context;
         }
 
+        public bool IsUserNameExist(string userName)
+        {
+            var returnVal = _jooleDataContext.tblUsers.FirstOrDefault(x => x.UserName == userName);
+            if (returnVal != null) return true; //exists
+            else return false;
+        }
+
+        public bool IsEmailExist(string userEmail)
+        {
+            var returnVal = _jooleDataContext.tblUsers.FirstOrDefault(x => x.UserEmail == userEmail);
+            if (returnVal != null) return true; //already exists
+            else return false;
+        }
+
         public tblUser GetUser(int id)
         {
             return _jooleDataContext.tblUsers.SingleOrDefault(s => s.UserId == id);

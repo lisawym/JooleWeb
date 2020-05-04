@@ -1,6 +1,13 @@
-﻿
+﻿@model Joole.Data.tblSubCategory
+
 @{
-    ViewBag.Title = "Search";
+    Layout = null;
+}
+
+
+
+@{
+    ViewBag.Title = "Home";
 }
 
 <!DOCTYPE html>
@@ -8,12 +15,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> @*for magnifying glass*@
     <title>@ViewBag.Title - Joole </title>
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/JooleStyles/home.css")
     @Styles.Render("~/Content/JooleStyles/search.css")
-
+    @Styles.Render("~/Content/JooleStyles/home.css")
 
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
@@ -24,58 +31,49 @@
 
 
     <div class="container">
-        <div class="bar">
-            <p> Welcome </p>
-        </div>
+        <br />
+        <br />
 
         <div class="header">
             <img id="logo" src="@Url.Content("~/Images/joolelogo.png")" />
             <p>Building Product Selection Platform</p>
-
-            <div>
-                <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        @foreach (var category in ViewBag.categories)
-                        {
-                            @*@{
-                                string name = category.CategoryName
-                            }*@
-                            @Html.ActionLink((string)@category.CategoryName, "SubCategory", "Search", new { c = @category.CategoryId }, null)
-
-                        }
-                    </div>
-                </div>
-                
-            </div>
         </div>
 
 
+        @using (Html.BeginForm("SubmitSearch", "Search", FormMethod.Get, new { @id = "searchForm" }))
+        {
+            @Html.DropDownList("categoryId", new SelectList(ViewBag.CategoryName, "CategoryId", "CategoryName"), "Category", new { @id = "dropBtn" })
+            <select id="searchBox" name="subCategoryId">
+                <option value="-1" hidden> Search... </option>
+            </select>
+
+            <button id="submitBtn" type="submit"><i class="fa fa-search"></i></button>
+
+        }
     </div>
 
 
 
-
     <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
+        $(document).ready(function () {
+            var dropBtn = document.getElementById("dropBtn");
+            dropBtn.options[0].value = -1;
+            dropBtn.options[0].hidden = true;
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+            $("#dropBtn").change(function () {
+
+                var categoryValue = $('#dropBtn').val().toString();
+
+                $.get("@Url.Action("GetSubCategory", "Search")", { "categoryValue": categoryValue }, function (data) {
+
+                    var s = '<option value="-1" hidden> Search... </option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].SubCategoryID + '">' + data[i].SubCategoryName + '</option>';
                     }
-                }
-            }
-        }
+                    $("#searchBox").html(s);
+                });
+            })
+        })
     </script>
 
 </body>

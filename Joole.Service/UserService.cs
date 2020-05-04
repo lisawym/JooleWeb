@@ -19,6 +19,21 @@ namespace Joole.Service
         }
 
 
+        public bool IsUserNameExist(string userName)
+        {
+            UnitOfWork _uow = new UnitOfWork(new JooleDataContext());
+            return _uow.GetUsersRepo.IsUserNameExist(userName);
+            // returns true if exists
+        }
+
+        public bool IsEmailExist(string userEmail)
+        {
+            UnitOfWork _uow = new UnitOfWork(new JooleDataContext());
+            return _uow.GetUsersRepo.IsEmailExist(userEmail);
+            // returns true if exists
+        }
+
+
         public tblUser GetUserProfile(int id)
         {
             UnitOfWork uow = new UnitOfWork(new JooleDataContext());
@@ -59,6 +74,19 @@ namespace Joole.Service
             IEnumerable<tblProduct> products = uow.GetProductsRepo.GetAll();
             return products;
         }
+
+
+       
+
+
+        public IEnumerable<tblProduct> GetResult(int subCategoryId)
+        {
+
+            UnitOfWork uow = new UnitOfWork(new JooleDataContext());
+            IEnumerable<tblProduct> products = uow.GetProductsRepo.GetResult(subCategoryId);
+            return products;
+        }
+
 
     }
 }

@@ -15,6 +15,12 @@ namespace Joole.Repo
         {
             _jooleDataContext = context;
         }
+
+
+        public IEnumerable<tblProduct> GetResult(int id)
+        {
+            return _jooleDataContext.tblProducts.Where(x => x.SubCategoryID == id).ToList();
+        }
     }
 }
 

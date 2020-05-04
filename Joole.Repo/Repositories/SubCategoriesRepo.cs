@@ -11,9 +11,13 @@ namespace Joole.Repo
     public class SubCategoriesRepo : GenericRepo<tblSubCategory>
     {
         JooleDataContext _jooleDataContext;
-        public SubCategoriesRepo(JooleDataContext context) : base (context)
+        public SubCategoriesRepo(JooleDataContext context) : base(context)
         {
             _jooleDataContext = context;
         }
+
+
+     
+
     }
 }
