@@ -13,7 +13,8 @@
     <title>@ViewBag.Title - Joole </title>
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/JooleStyles/login.css")
+    @Styles.Render("~/Content/JooleStyles/home.css")
+    @Styles.Render("~/Content/JooleStyles/result.css")
 
 
     <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -23,13 +24,23 @@
 
 <body>
 
-    <div class="container">
+    <div class="wrapper">
 
-        <div class="Results">
+        <div class="topbar">
+            <img id="logotop" src="@Url.Content("~/Images/joolelogo.png")" />
+            <button id="back">@Html.ActionLink("Back to Search Page", "Search", "Search")</button>
+
+
+        </div>
+
+        <div class="results">
             @foreach (var product in Model.products)
             {
+            <div class="product">
                 <p>@product.ProductName</p>
                 <img class="product" src="@Url.Content("~/ProductImages/"+ @product.ProductID +".png")" />
+            </div>
+                
             }
         </div>
 
